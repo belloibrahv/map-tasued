@@ -8,7 +8,6 @@ import { featureFlags } from '@/lib/voice/feature-flags'
 import MapFallback from './map-fallback'
 
 // Lazy load voice navigation components
-const VoiceController = lazy(() => import('@/components/voice-navigation/voice-controller').then(module => ({ default: module.VoiceController })))
 const VoiceControlButtons = lazy(() => import('@/components/voice-navigation/voice-control-buttons'))
 const VoiceStatusIndicator = lazy(() => import('@/components/voice-navigation/voice-status-indicator'))
 const VoiceStatusMini = lazy(() => import('@/components/voice-navigation/voice-status-indicator').then(module => ({ default: module.VoiceStatusMini })))
@@ -64,6 +63,9 @@ const CampusMap = ({
           }
         })
         setVoiceControllerResult(result)
+      }).catch((error) => {
+        console.error('Failed to load voice controller:', error)
+        setVoiceError(error)
       })
     }
   }, [pathResult])

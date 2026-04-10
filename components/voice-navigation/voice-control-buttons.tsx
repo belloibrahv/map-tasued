@@ -150,11 +150,13 @@ export default function VoiceControlButtons({
       {/* Status Indicators */}
       <div className="flex items-center gap-2 ml-2">
         {/* Speech Synthesizer Status */}
-        {state.speechSynthesizerReady ? (
-          <Volume2 className="w-4 h-4 text-green-600" title="Speech synthesizer ready" />
-        ) : (
-          <VolumeX className="w-4 h-4 text-red-600" title="Speech synthesizer not ready" />
-        )}
+        <div title="Speech synthesizer ready">
+          {state.speechSynthesizerReady ? (
+            <Volume2 className="w-4 h-4 text-green-600" />
+          ) : (
+            <VolumeX className="w-4 h-4 text-red-600" />
+          )}
+        </div>
         
         {/* Fallback Mode Indicator */}
         {state.fallbackMode && (
@@ -265,11 +267,13 @@ export function VoiceControlButtonsCompact({
       )}
       
       {/* Status indicator */}
-      {state.speechSynthesizerReady ? (
-        <Volume2 className="w-4 h-4 text-green-600 ml-1" />
-      ) : (
-        <VolumeX className="w-4 h-4 text-red-600 ml-1" />
-      )}
+      <div title={state.speechSynthesizerReady ? "Speech synthesizer ready" : "Speech synthesizer not ready"}>
+        {state.speechSynthesizerReady ? (
+          <Volume2 className="w-4 h-4 text-green-600 ml-1" />
+        ) : (
+          <VolumeX className="w-4 h-4 text-red-600 ml-1" />
+        )}
+      </div>
     </div>
   )
 }

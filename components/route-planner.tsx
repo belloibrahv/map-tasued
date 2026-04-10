@@ -10,7 +10,6 @@ import { dijkstraShortestPath } from '@/lib/dijkstra'
 import { featureFlags } from '@/lib/voice/feature-flags'
 
 // Lazy load voice navigation components
-const VoiceController = lazy(() => import('@/components/voice-navigation/voice-controller').then(module => ({ default: module.VoiceController })))
 const VoiceControlButtonsCompact = lazy(() => import('@/components/voice-navigation/voice-control-buttons').then(module => ({ default: module.VoiceControlButtonsCompact })))
 
 interface RoutePlannerProps {
@@ -53,6 +52,8 @@ export default function RoutePlanner({
           }
         })
         setVoiceControllerResult(result)
+      }).catch((error) => {
+        console.error('Failed to load voice controller:', error)
       })
     }
   }, [currentRoute])
